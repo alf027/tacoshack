@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import ChoicesList from '../ChoicesList/ChoicesList';
+// import ChoicesList from '../ChoicesList/ChoicesList';
+import StepOne from '../Steps/Step1';
 
 class OrderWizard extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class OrderWizard extends Component {
 
   _next = (data) => {
     let currentStep = this.state.currentStep
+    console.log('data', data);
     
     if (currentStep >= 4) {
       currentStep = 5
@@ -25,7 +27,7 @@ class OrderWizard extends Component {
 
   }
 
-  _prev = () => {
+  _prev = (data) => {
     let currentStep = this.state.currentStep;
     if (currentStep <= 2) {
       currentStep = 1
@@ -44,9 +46,8 @@ class OrderWizard extends Component {
     return (
       <div>
         <div>Order Wizard</div>
-        <ChoicesList />
-        <button onClick={this._next}>next</button>
-        <button onClick={this._prev}>previous</button>
+        <StepOne prev={this._prev} next={this._next}/>
+        
       </div>
 
     )
