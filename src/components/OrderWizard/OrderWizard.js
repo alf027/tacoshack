@@ -14,7 +14,7 @@ class OrderWizard extends Component {
     if(currentStep >= 4) {
       currentStep = 5
     } else {
-      currentStep ++ 
+      currentStep = currentStep ++; 
     }
   }
 
