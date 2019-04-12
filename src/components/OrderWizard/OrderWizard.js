@@ -16,7 +16,7 @@ class OrderWizard extends Component {
     if (currentStep >= 4) {
       currentStep = 5
     } else {
-      currentStep += currentStep
+      currentStep += 1
     }
 
     this.setState({ currentStep: currentStep }, ()=> {
@@ -30,7 +30,7 @@ class OrderWizard extends Component {
     if (currentStep <= 2) {
       currentStep = 1
     } else {
-      currentStep -= currentStep
+      currentStep -= 1
     }
 
     this.setState({ currentStep: currentStep }, ()=> {
