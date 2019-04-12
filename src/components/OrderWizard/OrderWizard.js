@@ -16,10 +16,17 @@ class OrderWizard extends Component {
     } else {
       currentStep = currentStep ++; 
     }
+
+    this.setState({currentStep: currentStep})
   }
 
   _prev = () => {
-
+    let currentStep = this.state.currentStep;
+    if(currentStep <=2) {
+      currentStep = 1
+    } else {
+      currentStep --;
+    }
   }
 
   
