@@ -11,29 +11,38 @@ class OrderWizard extends Component {
   _next = () => {
     let currentStep = this.state.currentStep
 
-    if(currentStep >= 4) {
+    if (currentStep >= 4) {
       currentStep = 5
     } else {
-      currentStep = currentStep ++; 
+      currentStep = currentStep++;
     }
 
-    this.setState({currentStep: currentStep})
+    this.setState({ currentStep: currentStep })
+    console.log('current step', this.state.currentStep)
   }
 
   _prev = () => {
     let currentStep = this.state.currentStep;
-    if(currentStep <=2) {
+    if (currentStep <= 2) {
       currentStep = 1
     } else {
-      currentStep --;
+      currentStep--;
     }
+
+    this.setState({ currentStep: currentStep })
+    console.log('current step', this.state.currentStep)
   }
 
-  
+
 
   render() {
     return (
-      <div>Order Wizard</div>
+      <div>
+        <div>Order Wizard</div>
+        <button onClick={this._next}>next</button>
+        <button onClick={this._prev}>previous</button>
+      </div>
+
     )
   }
 }
