@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import ChoicesList from '../ChoicesList/ChoicesList';
+
 class OrderWizard extends Component {
   constructor(props) {
     super(props)
@@ -8,13 +10,13 @@ class OrderWizard extends Component {
     };
   }
 
-  _next = () => {
+  _next = (data) => {
     let currentStep = this.state.currentStep
     
     if (currentStep >= 4) {
       currentStep = 5
     } else {
-      currentStep = currentStep + 1;
+      currentStep += currentStep
     }
 
     this.setState({ currentStep: currentStep }, ()=> {
@@ -28,7 +30,7 @@ class OrderWizard extends Component {
     if (currentStep <= 2) {
       currentStep = 1
     } else {
-      currentStep = currentStep - 1
+      currentStep -= currentStep
     }
 
     this.setState({ currentStep: currentStep }, ()=> {
@@ -42,6 +44,7 @@ class OrderWizard extends Component {
     return (
       <div>
         <div>Order Wizard</div>
+        <ChoicesList />
         <button onClick={this._next}>next</button>
         <button onClick={this._prev}>previous</button>
       </div>
