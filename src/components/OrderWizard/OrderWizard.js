@@ -19,11 +19,10 @@ class OrderWizard extends Component {
     }
   }
 
-
-
   _next = (data) => {
     let currentStep = this.state.currentStep
     this.setState({
+      // this merges the data from the step with the parent state to create a complete order object
       tacoOrder: {...this.state.tacoOrder, ...data}
     })
 
@@ -39,7 +38,7 @@ class OrderWizard extends Component {
 
   }
 
-  _prev = (data) => {
+  _prev = () => {
     let currentStep = this.state.currentStep;
     if (currentStep <= 2) {
       currentStep = 1
@@ -51,8 +50,6 @@ class OrderWizard extends Component {
       console.log('current step', this.state.currentStep)
     })
   }
-
-
 
   render() {
     return (
