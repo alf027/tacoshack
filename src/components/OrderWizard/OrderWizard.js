@@ -6,6 +6,19 @@ class OrderWizard extends Component {
     this.state = {
       currentStep: 1
     };
+  }
+
+  _next = () => {
+    let currentStep = this.state.currentStep
+
+    if(currentStep >= 4) {
+      currentStep = 5
+    } else {
+      currentStep ++ 
+    }
+  }
+
+  _prev = () => {
 
   }
 
