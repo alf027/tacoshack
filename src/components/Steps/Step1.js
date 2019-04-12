@@ -3,8 +3,15 @@ import React from 'react';
 class StepOne extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      tacoTypesDef: [
+        { type: 'Taco', price: 7.99 },
+        { type: 'Burrito', price: 8.99 },
+        { type: 'Bowl', price: 6.99 }
+      ]
+    }
 
-    
+
   }
 
   validateNext = () => {
@@ -16,20 +23,14 @@ class StepOne extends React.Component {
   }
 
   render() {
-    const tacoTypesDef = [
-      {type: 'Taco', price: 7.99},
-      {type: 'Burrito', price: 8.99},
-      {type: 'Bowl', price:6.99}
-    ]
-
-    const test = tacoTypesDef.map((tacoType)=>{
+    const test = this.state.tacoTypesDef.map((tacoType) => {
       return (
-      <div className="field">
-              <div className="ui radio checkbox">
-                <input type="radio" name="tacoType"></input>
-                <label>{tacoType.type}</label>
-              </div>
-            </div>
+        <div className="field">
+          <div className="ui radio checkbox">
+            <input type="radio" name="tacoType"></input>
+            <label>{tacoType.type}</label>
+          </div>
+        </div>
       )
     });
 
@@ -38,7 +39,7 @@ class StepOne extends React.Component {
         <div className="ui form">
           <div className="grouped fields">
             <label for="tacoType">Select Taco Type</label>
-              {test}
+            {test}
             {/* <div className="field">
               <div className="ui radio checkbox">
                 <input type="radio" name="tacoType"></input>
