@@ -23,12 +23,13 @@ class StepOne extends React.Component {
   }
 
   render() {
-    const test = this.state.tacoTypesDef.map((tacoType) => {
+    const test = this.state.tacoTypesDef.map((tacoType, index) => {
       return (
-        <div className="field">
+        <div key={index} className="field">
           <div className="ui radio checkbox">
             <input type="radio" name="tacoType"></input>
-            <label>{tacoType.type}</label>
+            <label>{tacoType.type} {tacoType.price}</label>
+            
           </div>
         </div>
       )
@@ -38,7 +39,7 @@ class StepOne extends React.Component {
       <div>
         <div className="ui form">
           <div className="grouped fields">
-            <label for="tacoType">Select Taco Type</label>
+            <label htmlFor="tacoType">Select Taco Type</label>
             {test}
             {/* <div className="field">
               <div className="ui radio checkbox">
