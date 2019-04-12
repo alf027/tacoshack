@@ -20,7 +20,7 @@ class StepOne extends React.Component {
   }
 
   validatePrev = () => {
-
+    this.props.prev()
   }
 
   // onClickEvent (event) {
@@ -30,6 +30,7 @@ class StepOne extends React.Component {
   setTacoState = (event) => {
     console.log(event.target.value)
     const index = event.target.value
+    //utilizing the index as the value prop does not like objects
     this.setState({selectedTaco: this.state.tacoTypesDef[index]}, ()=>{
       console.log(this.state.selectedTaco);
     })
