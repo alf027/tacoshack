@@ -3,6 +3,10 @@ class OrderWizard extends Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      currentStep: 1
+    };
+
   }
 
   
