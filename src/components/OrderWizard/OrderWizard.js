@@ -55,7 +55,7 @@ class OrderWizard extends Component {
     return (
       <div>
         <div>Order Wizard</div>
-        <StepOne prev={this._prev} next={this._next} />
+        <StepOne currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
 
       </div>
 
