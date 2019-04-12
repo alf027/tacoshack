@@ -6,9 +6,9 @@ class StepOne extends React.Component {
     this.state = {
       selectedTaco: {type: 'Taco', price: 7.99},
       tacoTypesDef: [
-        { type: 'Taco', price: 7.99 },
-        { type: 'Burrito', price: 8.99 },
-        { type: 'Bowl', price: 6.99 }
+        { tacoType: 'Taco', tacoPrice: 7.99 },
+        { tacoType: 'Burrito', tacoPrice: 8.99 },
+        { tacoType: 'Bowl', tacoPrice: 6.99 }
       ]
     }
 
@@ -41,7 +41,7 @@ class StepOne extends React.Component {
         <div key={index} className="field">
           <div className="ui radio checkbox" >
             <input type="radio" name="tacoType" value={index} onClick={this.setTacoState}></input>
-            <label>{taco.type} {taco.price}</label>
+            <label>{taco.tacoType} {taco.tacoPrice}</label>
             
           </div>
         </div>
