@@ -4,6 +4,7 @@ class StepOne extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      selectedTaco: {type: 'Taco', price: 7.99},
       tacoTypesDef: [
         { type: 'Taco', price: 7.99 },
         { type: 'Burrito', price: 8.99 },
@@ -15,20 +16,32 @@ class StepOne extends React.Component {
   }
 
   validateNext = () => {
-    this.props.next('test data')
+    this.props.next(this.state.selectedTaco)
   }
 
   validatePrev = () => {
 
   }
 
+  // onClickEvent (event) {
+  // }
+  
+
+  setTacoState = (event) => {
+    console.log(event.target.value)
+    const index = event.target.value
+    this.setState({selectedTaco: this.state.tacoTypesDef[index]}, ()=>{
+      console.log(this.state.selectedTaco);
+    })
+  }
+
   render() {
-    const test = this.state.tacoTypesDef.map((tacoType, index) => {
+    const tacos = this.state.tacoTypesDef.map((taco, index) => {
       return (
         <div key={index} className="field">
-          <div className="ui radio checkbox">
-            <input type="radio" name="tacoType"></input>
-            <label>{tacoType.type} {tacoType.price}</label>
+          <div className="ui radio checkbox" >
+            <input type="radio" name="tacoType" value={index} onClick={this.setTacoState}></input>
+            <label>{taco.type} {taco.price}</label>
             
           </div>
         </div>
@@ -40,19 +53,7 @@ class StepOne extends React.Component {
         <div className="ui form">
           <div className="grouped fields">
             <label htmlFor="tacoType">Select Taco Type</label>
-            {test}
-            {/* <div className="field">
-              <div className="ui radio checkbox">
-                <input type="radio" name="tacoType"></input>
-                <label>Burrito</label>
-              </div>
-            </div>
-            <div className="field">
-              <div className="ui radio checkbox">
-                <input type="radio" name="tacoType"></input>
-                <label>Bowl</label>
-              </div>
-            </div> */}
+              {tacos}
           </div>
         </div>
         <button onClick={this.validateNext}>next</button>
