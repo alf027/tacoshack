@@ -23,8 +23,6 @@ class StepOne extends React.Component {
     this.props.prev()
   }
 
-  // onClickEvent (event) {
-  // }
   
 
   setTacoState = (event) => {
@@ -36,19 +34,25 @@ class StepOne extends React.Component {
     })
   }
 
-  render() {
-    const tacos = this.state.tacoTypesDef.map((taco, index) => {
+  buildRadioOptions = () => {
+    return this.state.tacoTypesDef.map((taco, index) => {
       return (
         <div key={index} className="field">
           <div className="ui radio checkbox" >
             <input type="radio" name="tacoType" value={index} onClick={this.setTacoState}></input>
             <label>{taco.tacoType} {taco.tacoPrice}</label>
-            
           </div>
         </div>
       )
     });
+  }
 
+  render() {
+    if (this.props.currentStep !== 1) {
+      return null;
+    }
+    const tacos = this.buildRadioOptions()
+    
     return (
       <div>
         <div className="ui form">
