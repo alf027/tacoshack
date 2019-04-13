@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 class StepFive extends React.Component {
   constructor(props) {
@@ -10,8 +10,10 @@ class StepFive extends React.Component {
       taxRate: .08445
     }
 
-    this.calculatePricing();
+  }
 
+  componentDidMount() {
+    this.calculatePricing();
   }
   
   calculatePricing() {
@@ -20,10 +22,6 @@ class StepFive extends React.Component {
     this.setState({total: this.calculateTotal()});
 
   
-  }
-
-  componentDidUpdate() {
-    
   }
 
   validatePrev = () => {
@@ -40,7 +38,7 @@ class StepFive extends React.Component {
   }
 
   calculateDrinkPrice () {
-    return this.props.completedOrder.drinkType==='yes' ? this.props.completedOrder.drinkPrice : 0.00;
+    return this.props.completedOrder.drinkType==="yes" ? this.props.completedOrder.drinkPrice : 0.00;
   }
 
   calculateTax () {
