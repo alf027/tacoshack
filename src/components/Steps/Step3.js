@@ -4,7 +4,7 @@ class StepThree extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedSalsa: { },
+      selectedSalsa: {},
       salsaTypesDef: [
         { salsaType: 'Pico de Gallo' },
         { salsaType: 'Habanero Devil Sauce' },
