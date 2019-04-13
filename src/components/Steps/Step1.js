@@ -4,7 +4,7 @@ class StepOne extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedTaco: {type: 'Taco', price: 7.99},
+      selectedTaco: {},
       tacoTypesDef: [
         { tacoType: 'Taco', tacoPrice: 7.99 },
         { tacoType: 'Burrito', tacoPrice: 8.99 },

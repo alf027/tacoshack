@@ -4,7 +4,7 @@ class StepFour extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedDrink: { drinkType: 'no' },
+      selectedDrink: {},
       drinkTypeDef: [
         { drinkType: 'yes' },
         { drinkType: 'no' }
