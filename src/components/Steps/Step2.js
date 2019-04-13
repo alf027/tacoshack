@@ -10,10 +10,9 @@ class StepTwo extends React.Component {
         { meatType: 'Chicken' },
         { meatType: 'Beef' },
         { meatType: 'No Meat' }
-      ]
+      ],
+      errorMessage: ""
     }
-
-
   }
 
   validateNext = () => {
@@ -21,6 +20,7 @@ class StepTwo extends React.Component {
       this.setState({errorMessage: "Please Select a Meat Type"})
     } else {
       this.props.next(this.state.selectedMeat)
+      this.setState({errorMessage: "", selectedMeat: {}})
     }
   }
 
@@ -63,6 +63,7 @@ class StepTwo extends React.Component {
         <div className="ui form">
           <div className="grouped fields">
             <label htmlFor="meatType">Select Meat Type</label>
+            <p>{this.state.errorMessage}</p>
             {meat}
           </div>
         </div>

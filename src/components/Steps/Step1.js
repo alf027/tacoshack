@@ -13,15 +13,14 @@ class StepOne extends React.Component {
       ],
       errorMessage: ""
     }
-
-
   }
-
+  
   validateNext = () => {
     if(isEmpty(this.state.selectedTaco)) {
       this.setState({errorMessage: "Please Select a Taco Type"})
     } else {
       this.props.next(this.state.selectedTaco)
+      this.setState({errorMessage: "", selectedTaco: {}})
     }
    
   }

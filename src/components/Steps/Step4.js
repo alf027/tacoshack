@@ -1,4 +1,6 @@
 import React from 'react';
+import {isEmpty} from 'lodash';
+
 
 class StepFour extends React.Component {
   constructor(props) {
@@ -8,14 +10,21 @@ class StepFour extends React.Component {
       drinkTypeDef: [
         { drinkType: 'yes' },
         { drinkType: 'no' }
-      ]
+      ],
+      errorMessage: ""
     }
 
 
   }
 
   validateNext = () => {
-    this.props.next(this.state.selectedDrink)
+    if(isEmpty(this.state.selectedDrink)) {
+      this.setState({errorMessage: "Please Select a Drink Type"})
+    } else {
+      this.props.next(this.state.selectedDrink);
+      this.setState({errorMessage: "", selectedDrink: {}});
+
+    }
   }
 
   validatePrev = () => {
@@ -55,6 +64,7 @@ class StepFour extends React.Component {
         <div className="ui form">
           <div className="grouped fields">
             <label htmlFor="tacoType">Do You Want a Drink?</label>
+            <p>{this.state.errorMessage}</p>
             {drink}
           </div>
         </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import {isEmpty} from 'lodash';
 
 class StepThree extends React.Component {
   constructor(props) {
@@ -9,14 +10,20 @@ class StepThree extends React.Component {
         { salsaType: 'Pico de Gallo' },
         { salsaType: 'Habanero Devil Sauce' },
         { salsaType: 'Verde Salsa' }
-      ]
+      ],
+      errorMessage: ""
     }
 
 
   }
 
   validateNext = () => {
-    this.props.next(this.state.selectedSalsa)
+    if(isEmpty(this.state.selectedSalsa)) {
+      this.setState({errorMessage: "Please Select a Salsa Type"})
+    } else {
+      this.props.next(this.state.selectedSalsa);
+      this.setState({errorMessage: "", selectedSalsa: {}});
+    }
   }
 
   validatePrev = () => {
@@ -56,6 +63,7 @@ class StepThree extends React.Component {
         <div className="ui form">
           <div className="grouped fields">
             <label htmlFor="salsaType">Select Sasla Type</label>
+            <p>{this.state.errorMessage}</p>
             {salsa}
           </div>
         </div>
