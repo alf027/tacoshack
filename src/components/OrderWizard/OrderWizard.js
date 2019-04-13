@@ -4,6 +4,8 @@ import StepOne from '../Steps/Step1';
 import StepTwo from '../Steps/Step2';
 import StepThree from '../Steps/Step3';
 import StepFour from '../Steps/Step4';
+import StepFive from '../Steps/Step5';
+
 
 
 class OrderWizard extends Component {
@@ -17,7 +19,7 @@ class OrderWizard extends Component {
         tacoPrice: 0,
         meatType: '',
         salsaType: '',
-        drink: 'no',
+        drinkType: 'no',
         drinkPrice: 1.25
       }
     }
@@ -25,10 +27,10 @@ class OrderWizard extends Component {
 
   _next = (data) => {
     let currentStep = this.state.currentStep
-    this.setState({
+    let mergedTacoOrder = Object.assign({},this.state.tacoOrder, data)
+    this.setState(
       // this merges the data from the step with the parent state to create a complete order object
-      tacoOrder: {...this.state.tacoOrder, ...data}
-    },()=>{
+      {tacoOrder : mergedTacoOrder}, () => {
       console.log(this.state.tacoOrder)
     })
 
@@ -65,7 +67,9 @@ class OrderWizard extends Component {
         <StepTwo currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
         <StepThree currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
         <StepFour currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
+        <StepFive completedOrder={this.state.tacoOrder} currentStep={this.state.currentStep} prev={this._prev} />
       </div>
+
 
     )
   }
