@@ -1,4 +1,5 @@
 import React from 'react';
+import {isEmpty} from 'lodash';
 
 class StepTwo extends React.Component {
   constructor(props) {
@@ -16,8 +17,11 @@ class StepTwo extends React.Component {
   }
 
   validateNext = () => {
-    console.log('this.state.selectedMeat in next' , this.state.selectedMeat);
-    this.props.next(this.state.selectedMeat)
+    if(isEmpty(this.state.selectedMeat)) {
+      this.setState({errorMessage: "Please Select a Meat Type"})
+    } else {
+      this.props.next(this.state.selectedMeat)
+    }
   }
 
   validatePrev = () => {
