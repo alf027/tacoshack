@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 // import ChoicesList from '../ChoicesList/ChoicesList';
 import StepOne from '../Steps/Step1';
+import StepTwo from '../Steps/Step2';
+import StepThree from '../Steps/Step3';
 
 class OrderWizard extends Component {
   constructor(props) {
@@ -24,6 +26,8 @@ class OrderWizard extends Component {
     this.setState({
       // this merges the data from the step with the parent state to create a complete order object
       tacoOrder: {...this.state.tacoOrder, ...data}
+    },()=>{
+      console.log(this.state.tacoOrder)
     })
 
     if (currentStep >= 4) {
@@ -56,6 +60,8 @@ class OrderWizard extends Component {
       <div>
         <div>Order Wizard</div>
         <StepOne currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
+        <StepTwo currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
+        <StepThree currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
 
       </div>
 
