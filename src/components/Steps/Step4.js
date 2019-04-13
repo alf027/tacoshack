@@ -60,18 +60,20 @@ class StepFour extends React.Component {
     const drink = this.buildRadioOptions()
 
     return (
-      <div>
-        <div className="ui form">
-          <div className="grouped fields">
-            <label htmlFor="tacoType">Do You Want a Drink?</label>
-            <p>{this.state.errorMessage}</p>
-            {drink}
+      <div className="row">
+        <div className="mx-auto">
+          <div className="ui form">
+            <div>
+              <label htmlFor="tacoType">Select Drink Type</label>
+              <p>{this.state.errorMessage}</p>
+              {drink}
+            </div>
           </div>
+          <button type="button" className="btn btn-primary btn-lg" onClick={this.validatePrev}>previous</button>
+          <span> </span>
+          <button type="button" className="btn btn-primary btn-lg" onClick={this.validateNext}>next</button>
         </div>
-        <button onClick={this.validateNext}>next</button>
-        <button onClick={this.validatePrev}>previous</button>
       </div>
-
     )
   }
 }

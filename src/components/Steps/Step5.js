@@ -6,7 +6,7 @@ class StepFive extends React.Component {
     this.state = {
       total: 0,
       subtotal: 0,
-      tax : 0,
+      tax: 0,
       taxRate: .08445
     }
 
@@ -15,20 +15,20 @@ class StepFive extends React.Component {
   componentDidMount() {
     this.calculatePricing();
   }
-  
-  calculatePricing() {
-    this.setState({subtotal: this.calculateSubTotal()});
-    this.setState({tax: this.calculateTax()});
-    this.setState({total: this.calculateTotal()});
 
-  
+  calculatePricing() {
+    this.setState({ subtotal: this.calculateSubTotal() });
+    this.setState({ tax: this.calculateTax() });
+    this.setState({ total: this.calculateTotal() });
+
+
   }
 
   validatePrev = () => {
     this.props.prev()
   }
 
-  calculateSubTotal () {
+  calculateSubTotal() {
     const foodPrice = this.props.completedOrder.tacoPrice;
     const drinkPrice = this.calculateDrinkPrice();
     let subtotal = foodPrice + drinkPrice;
@@ -37,16 +37,16 @@ class StepFive extends React.Component {
 
   }
 
-  calculateDrinkPrice () {
-    return this.props.completedOrder.drinkType==="yes" ? this.props.completedOrder.drinkPrice : 0.00;
+  calculateDrinkPrice() {
+    return this.props.completedOrder.drinkType === "yes" ? this.props.completedOrder.drinkPrice : 0.00;
   }
 
-  calculateTax () {
+  calculateTax() {
     let tax = this.calculateSubTotal() * .08445;
     return tax
   }
 
-  calculateTotal () {
+  calculateTotal() {
     let total = this.calculateSubTotal() + this.calculateTax();
     return total
 
@@ -65,38 +65,47 @@ class StepFive extends React.Component {
 
 
     return (
-      <div>
-        <div className="ui grid">
-          <div className="two wide column">{completedOrder.tacoType}</div>
-          <div className="two wide column">{completedOrder.tacoPrice}</div>
+      <div className='row'>
+        <div className="col-md-4 order-md-2 mb-4 mx-auto">
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">{completedOrder.tacoType}</h6>
+                <small class="text-muted">{completedOrder.meatType}</small>
+                <br />
+                <small class="text-muted">{completedOrder.salsaType}</small>
+              </div>
+              <span class="text-muted">$12</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Drink</h6>
+              </div>
+              <span class="text-muted">${drinkPrice}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Tax </h6>
+                <small class="text-muted">(8.445%)</small>
+              </div>
+              <span class="text-muted">${tax}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Subtotal</h6>
+              </div>
+              <span class="text-muted">${subtotal}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between text-success">
+              <span>Total (USD)</span>
+              <strong>${total}</strong>
+            </li>
+          </ul>
+          <div className="row">
+            <button type="button" className="btn btn-primary btn-lg" onClick={this.validatePrev}>previous</button>
+          </div>
         </div>
-        <div className="ui grid">
-          <div className="two wide column"> - {completedOrder.meatType}</div>
-          <div className="two wide column">0.00</div>
-        </div>
-        <div className="ui grid">
-          <div className="two wide column"> - {completedOrder.salsaType}</div>
-          <div className="two wide column">0.00</div>
-        </div>
-        <div className="ui grid">
-          <div className="two wide column"> - Drink</div>
-          <div className="two wide column">${drinkPrice}</div>
-        </div>
-        <div className="ui grid">
-          <div className="two wide column">Subtotal:</div>
-          <div className="two wide column">${subtotal}</div>
-        </div>
-        <div className="ui grid">
-          <div className="two wide column">Tax (8.445%):</div>
-          <div className="two wide column">${tax}</div>
-        </div>
-        <div className="ui grid">
-          <div className="two wide column">Total:</div>
-          <div className="two wide column">${total}</div>
-        </div>
-        <button onClick={this.validatePrev}>previous</button>
       </div>
-
     )
   }
 };

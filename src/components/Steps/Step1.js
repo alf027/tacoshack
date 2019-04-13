@@ -1,5 +1,5 @@
 import React from "react";
-import {isEmpty} from "lodash"
+import { isEmpty } from "lodash"
 
 class StepOne extends React.Component {
   constructor(props) {
@@ -14,28 +14,28 @@ class StepOne extends React.Component {
       errorMessage: ""
     }
   }
-  
+
   validateNext = () => {
-    if(isEmpty(this.state.selectedTaco)) {
-      this.setState({errorMessage: "Please Select a Taco Type"})
+    if (isEmpty(this.state.selectedTaco)) {
+      this.setState({ errorMessage: "Please Select a Taco Type" })
     } else {
       this.props.next(this.state.selectedTaco)
-      this.setState({errorMessage: "", selectedTaco: {}})
+      this.setState({ errorMessage: "", selectedTaco: {} })
     }
-   
+
   }
 
   validatePrev = () => {
     this.props.prev()
   }
 
-  
+
 
   setTacoState = (event) => {
     console.log(event.target.value)
     const index = event.target.value
     //utilizing the index as the value prop does not like objects
-    this.setState({selectedTaco: this.state.tacoTypesDef[index]}, ()=>{
+    this.setState({ selectedTaco: this.state.tacoTypesDef[index] }, () => {
       console.log(this.state.selectedTaco);
     })
   }
@@ -44,9 +44,9 @@ class StepOne extends React.Component {
     return this.state.tacoTypesDef.map((taco, index) => {
       return (
         <div key={index} className="field">
-          <div className="ui radio checkbox" >
-            <input type="radio" name="tacoType" value={index} onClick={this.setTacoState}></input>
-            <label>{taco.tacoType} {taco.tacoPrice}</label>
+          <div className="form-check" >
+            <input className="form-check-input" type="radio" name="tacoType" value={index} onClick={this.setTacoState}></input>
+            <label className="form-check-label">{taco.tacoType} {taco.tacoPrice}</label>
           </div>
         </div>
       )
@@ -58,20 +58,22 @@ class StepOne extends React.Component {
       return null;
     }
     const tacos = this.buildRadioOptions()
-    
-    return (
-      <div>
-        <div className="ui form">
-          <div className="grouped fields">
-            <label htmlFor="tacoType">Select Taco Type</label>
-            <p>{this.state.errorMessage}</p>
-              {tacos}
-          </div>
-        </div>
-        <button onClick={this.validateNext}>next</button>
-        <button onClick={this.validatePrev}>previous</button>
-      </div>
 
+    return (
+      <div className="row">
+        <div className="mx-auto">
+          <div className="ui form">
+            <div>
+              <label htmlFor="tacoType">Select Taco Type</label>
+              <p>{this.state.errorMessage}</p>
+              {tacos}
+            </div>
+          </div>
+          <button type="button" className="btn btn-primary btn-lg" onClick={this.validatePrev}>previous</button>
+          <span> </span>
+          <button type="button" className="btn btn-primary btn-lg" onClick={this.validateNext}>next</button>
+        </div>
+      </div>
     )
   }
 }
