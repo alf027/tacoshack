@@ -4,7 +4,7 @@ class StepTwo extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedMeat: { meatType: 'Chicken' },
+      selectedMeat: {},
       meatTypesDef: [
         { meatType: 'Chicken' },
         { meatType: 'Beef' },
@@ -16,6 +16,7 @@ class StepTwo extends React.Component {
   }
 
   validateNext = () => {
+    console.log('this.state.selectedMeat in next' , this.state.selectedMeat);
     this.props.next(this.state.selectedMeat)
   }
 
@@ -27,10 +28,12 @@ class StepTwo extends React.Component {
     console.log(event.target.value)
     const index = event.target.value
     //utilizing the index as the value prop does not like objects
-    this.setState({ selectedmeat: this.state.meatTypesDef[index] }, () => {
-      console.log(this.state.selectedmeat);
+    this.setState({selectedMeat: this.state.meatTypesDef[index]}, ()=>{
+      console.log(this.state.selectedMeat);
     })
   }
+
+  
 
   buildRadioOptions = () => {
     return this.state.meatTypesDef.map((meat, index) => {
@@ -45,7 +48,7 @@ class StepTwo extends React.Component {
     });
   }
 
-  render() {
+  render= () => {
     if (this.props.currentStep !== 2) {
       return null;
     }
