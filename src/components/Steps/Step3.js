@@ -37,7 +37,7 @@ class StepThree extends React.Component {
       return (
         <div key={index} className="field">
           <div className="ui radio checkbox" >
-            <input type="radio" name="tacoType" value={index} onClick={this.setSalsaState}></input>
+            <input type="radio" name="salsaType" value={index} onClick={this.setSalsaState}></input>
             <label>{salsa.salsaType}</label>
           </div>
         </div>
@@ -55,7 +55,7 @@ class StepThree extends React.Component {
       <div>
         <div className="ui form">
           <div className="grouped fields">
-            <label htmlFor="tacoType">Select Sasla Type</label>
+            <label htmlFor="salsaType">Select Sasla Type</label>
             {salsa}
           </div>
         </div>

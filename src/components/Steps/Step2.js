@@ -27,8 +27,8 @@ class StepTwo extends React.Component {
     console.log(event.target.value)
     const index = event.target.value
     //utilizing the index as the value prop does not like objects
-    this.setState({ selectedTaco: this.state.meatTypesDef[index] }, () => {
-      console.log(this.state.selectedTaco);
+    this.setState({ selectedmeat: this.state.meatTypesDef[index] }, () => {
+      console.log(this.state.selectedmeat);
     })
   }
 
@@ -37,7 +37,7 @@ class StepTwo extends React.Component {
       return (
         <div key={index} className="field">
           <div className="ui radio checkbox" >
-            <input type="radio" name="tacoType" value={index} onClick={this.setMeatState}></input>
+            <input type="radio" name="meatType" value={index} onClick={this.setMeatState}></input>
             <label>{meat.meatType}</label>
           </div>
         </div>
@@ -55,7 +55,7 @@ class StepTwo extends React.Component {
       <div>
         <div className="ui form">
           <div className="grouped fields">
-            <label htmlFor="tacoType">Select Meat Type</label>
+            <label htmlFor="meatType">Select Meat Type</label>
             {meat}
           </div>
         </div>
