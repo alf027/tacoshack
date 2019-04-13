@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import StepOne from '../Steps/Step1';
 import StepTwo from '../Steps/Step2';
 import StepThree from '../Steps/Step3';
+import StepFour from '../Steps/Step4';
+
 
 class OrderWizard extends Component {
   constructor(props) {
@@ -15,7 +17,7 @@ class OrderWizard extends Component {
         tacoPrice: 0,
         meatType: '',
         salsaType: '',
-        drink: false,
+        drink: 'no',
         drinkPrice: 1.25
       }
     }
@@ -62,7 +64,7 @@ class OrderWizard extends Component {
         <StepOne currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
         <StepTwo currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
         <StepThree currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
-
+        <StepFour currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
       </div>
 
     )
