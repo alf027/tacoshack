@@ -56,7 +56,7 @@ class OrderSummary extends React.Component {
           </div>
           <span className="text-muted">${orderItem.price.toFixed(2)}</span>
         </li>
-      )
+      );
     });
   }
 
@@ -99,7 +99,6 @@ class OrderSummary extends React.Component {
       </div>
     );
   }
-
 
   render() {
     return this.buildOrderSummary();

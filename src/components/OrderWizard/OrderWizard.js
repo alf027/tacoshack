@@ -7,8 +7,7 @@ import {isUndefined} from 'lodash';
 
 class OrderWizard extends Component {
   constructor(props) {
-    super(props)
-
+    super(props);
     this.state = {
       currentStep: 0,
       tacoOrder: []
@@ -58,47 +57,46 @@ class OrderWizard extends Component {
   }
 
   _next = (data, step) => {
-    const optionMetaData = this.getOptionMetaData()
-    let currentStep = this.state.currentStep
-    let optionValue = data
-    let currentTacoOrder = this.state.tacoOrder
+    const optionMetaData = this.getOptionMetaData();
+    let currentStep = this.state.currentStep;
+    let optionValue = data;
+    let currentTacoOrder = this.state.tacoOrder;
     if(isUndefined(currentTacoOrder[step])) {
-      currentTacoOrder.push(optionValue)
+      currentTacoOrder.push(optionValue);
     } else {
-      currentTacoOrder[step] = optionValue
+      currentTacoOrder[step] = optionValue;
     }
    
     this.setState(
       { tacoOrder: currentTacoOrder }
-    )
+    );
 
     if (currentStep >= optionMetaData.length - 1) {
-      currentStep = 4
+      currentStep = 4;
     } else {
-      currentStep += 1
-    }
+      currentStep += 1;
+    };
 
-    this.setState({ currentStep: currentStep })
+    this.setState({ currentStep: currentStep });
 
   }
 
   _prev = () => {
     let currentStep = this.state.currentStep;
     if (currentStep <= 1) {
-      currentStep = 0
+      currentStep = 0;
     } else {
-      currentStep -= 1
+      currentStep -= 1;
     }
 
-    this.setState({ currentStep: currentStep })
+    this.setState({ currentStep: currentStep });
   }
 
   buildOptions() {
-    const options = this.getOptionMetaData()
+    const options = this.getOptionMetaData();
     return options.map((optionObj, index)=>{
       return <TacoOption key={index} currentStep={this.state.currentStep} renderStep={optionObj.renderStep} options={optionObj.options} optionName={optionObj.optionName} prev={this._prev} next={this._next} />
-    })
-
+    });
   }
 
   buildOrderWizard() {
@@ -113,12 +111,12 @@ class OrderWizard extends Component {
           <OrderSummary completedOrder={this.state.tacoOrder} currentStep={this.state.currentStep} prev={this._prev} />
         </div>
       </div>
-    )
+    );
   }
 
 
   render() {
-    return this.buildOrderWizard()
+    return this.buildOrderWizard();
   }
 }
 
