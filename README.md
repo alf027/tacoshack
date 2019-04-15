@@ -16,7 +16,7 @@ The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
 
-##Development methodology 
+## Development Methodology 
 
 ### Tech Stack Used
 
@@ -54,6 +54,22 @@ eg :
 [{ type: "Taco", price: 7.99 }, { type: "Burrito", price: 8.99 }, { type: "Bowl", price: 6.99 } ]
 
 optionName(string) - a string that describes the options eg 'salsa'
+```
+
+### OrderSummary
+
+The OrderSummary component is responsible for displaying the completed taco order in line item format and iterates through the completed taco order to calculate the subtotal, tax, and total.  
+
+It is configured by passing the following props:
+
+```
+completedOrder(array) - this is an array of all the option values and prices selected in the steps leading up to the completed order 
+
+EG: [{ type: "Taco", price: 7.99 }, { type: 'Beef', price: 0.00}, { type: 'Habanero Devil Sauce', price: 0.00 }, { type: 'Drink', price: 1.25 }]
+
+currentStep(int) - the current step the wizard is on.
+
+prev(function) - the callback function run when clicking the previous button.
 ```
 
 
