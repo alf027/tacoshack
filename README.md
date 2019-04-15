@@ -1,11 +1,15 @@
 
 ## Startup instructions
 
-navigate to the project directory and run
+### Install nodejs
+
+https://nodejs.org/en/download/ here is the link to the latest version
+
+Navigate to the project directory in a terminal/cmd window and run
 
 ### `npm install`
 
-installs application packages
+Installs application packages
 
 ### `npm start`
 
@@ -68,9 +72,12 @@ It is configured by passing the following props:
 ```
 completedOrder(array) - this is an array of all the option values and prices selected in the steps leading up to the completed order 
 
+
 EG: [{ type: "Taco", price: 7.99 }, { type: 'Beef', price: 0.00}, { type: 'Habanero Devil Sauce', price: 0.00 }, { type: 'Drink', price: 1.25 }]
 
+
 currentStep(int) - the current step the wizard is on.
+
 
 prev(function) - the callback function run when clicking the previous button.
 ```
