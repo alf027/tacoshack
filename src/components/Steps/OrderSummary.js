@@ -2,14 +2,13 @@ import React from "react";
 
 class OrderSummary extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       total: 0,
       subtotal: 0,
       tax: 0,
       taxRate: .08445
-    }
-
+    };
   }
 
   componentDidMount() {
@@ -25,27 +24,26 @@ class OrderSummary extends React.Component {
   }
 
   validatePrev = () => {
-    this.props.prev()
+    this.props.prev();
   }
 
   calculateSubTotal() {
-    let subtotal = 0
+    let subtotal = 0;
     this.props.completedOrder.forEach((orderItem) => {
-      subtotal += orderItem.price
-    })
+      subtotal += orderItem.price;
+    });
 
-    return subtotal
-
+    return subtotal;
   }
 
   calculateTax() {
     let tax = this.calculateSubTotal() * .08445;
-    return tax
+    return tax;
   }
 
   calculateTotal() {
     let total = this.calculateSubTotal() + this.calculateTax();
-    return total
+    return total;
 
   }
 
@@ -68,8 +66,8 @@ class OrderSummary extends React.Component {
     }
     const tax = this.calculateTax().toFixed(2);
     const subtotal = this.calculateSubTotal().toFixed(2);
-    const total = this.calculateTotal().toFixed(2)
-    const orderItems = this.buildOrderItems()
+    const total = this.calculateTotal().toFixed(2);
+    const orderItems = this.buildOrderItems();
 
     return (
       <div className='row'>
@@ -99,12 +97,12 @@ class OrderSummary extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 
 
   render() {
-    return this.buildOrderSummary()
+    return this.buildOrderSummary();
   }
 };
 

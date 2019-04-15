@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import ChoicesList from '../ChoicesList/ChoicesList';
 import TacoOption from '../Steps/TacoOption';
 import OrderSummary from '../Steps/OrderSummary';
 import {isUndefined} from 'lodash';

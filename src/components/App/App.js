@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import OrderWizard from '../OrderWizard/OrderWizard';
 
 class App extends Component {
@@ -13,7 +12,7 @@ class App extends Component {
         </div>
         <OrderWizard />
       </div>
-    )
+    );
   }
 }
 

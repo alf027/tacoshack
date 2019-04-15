@@ -4,7 +4,7 @@ import './TacoOption.css';
 
 class TacoOption extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       selectedOption: {},
       errorMessage: ""
@@ -13,24 +13,23 @@ class TacoOption extends React.Component {
 
   validateNext = () => {
     if (isEmpty(this.state.selectedOption)) {
-      this.setState({ errorMessage: `Please Select a ${this.props.optionName} Type` })
+      this.setState({ errorMessage: `Please Select a ${this.props.optionName} Type` });
     } else {
-      this.props.next(this.state.selectedOption, this.props.renderStep)
-      this.setState({ errorMessage: "", selectedOption: {} })
-    }
-
+      this.props.next(this.state.selectedOption, this.props.renderStep);
+      this.setState({ errorMessage: "", selectedOption: {} });
+    };
   }
 
   validatePrev = () => {
-    this.props.prev()
+    this.props.prev();
   }
 
 
 
   setTacoState = (event) => {
-    const index = event.target.value
+    const index = event.target.value;
     //utilizing the index as the value prop does not like objects
-    this.setState({ selectedOption: this.props.options[index] })
+    this.setState({ selectedOption: this.props.options[index] });
   }
 
   buildRadioOptions = () => {
@@ -42,7 +41,7 @@ class TacoOption extends React.Component {
             <label className="form-check-label">{taco.type} {taco.price.toFixed(2)}</label>
           </div>
         </div>
-      )
+      );
     });
   }
 
@@ -50,7 +49,7 @@ class TacoOption extends React.Component {
     if (this.props.currentStep !== this.props.renderStep) {
       return null;
     }
-    const tacos = this.buildRadioOptions()
+    const tacos = this.buildRadioOptions();
     return (
       <div className="row">
         <div className="mx-auto">
@@ -61,7 +60,6 @@ class TacoOption extends React.Component {
                 <label htmlFor="tacoType">{`Select ${this.props.optionName} Type`}</label>
                 <p className="text-danger">{this.state.errorMessage}</p>
               </div>
-              
               {tacos}
             </div>
           </div>
@@ -69,7 +67,6 @@ class TacoOption extends React.Component {
             <button type="button" className="btn btn-primary btn-lg previous" onClick={this.validatePrev}>previous</button>
             <button type="button" className="btn btn-primary btn-lg" onClick={this.validateNext}>next</button>
           </div>
-          
         </div>
       </div>
     )
