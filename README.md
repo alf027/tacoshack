@@ -16,3 +16,47 @@ The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
 
+##Development methodology 
+
+### Tech Stack Used
+
+I chose to use React for this assignment as Nicole mentioned on my phone interview that Simple Energy would be using React for the majority of the frontend work going forward. I haven't had the opportunity to write any react code in my current position (my current position uses Angularjs) but I thought this would be the perfect opportunity to learn!
+
+## Components
+
+### OrderWizard
+
+The OrderWizard component is the the parent component that houses the TacoOptions and the OrderSummary Components.
+
+It is responsible for taking data passed back to it via the TacoOptions components and building the tacoOrder as well as increasing or decreasing the current step.
+
+
+### TacoOption
+
+The TacoOption Component is a reusable component for building out a list of radio options for picking specifics about your taco order. This component requires several props to be passed to configure the component. 
+
+```
+next(function) - the callback function run when clicking the next button
+
+
+prev(function) - the callback function run when clicking the previous button.
+
+
+currentStep(int) - the current step the wizard is on.
+
+
+renderStep(int) - the step you want the component to be rendered on.
+
+
+options(array) - an array of type values and prices. This array will be mapped to the radio buttons
+eg :
+
+[{ type: "Taco", price: 7.99 }, { type: "Burrito", price: 8.99 }, { type: "Bowl", price: 6.99 } ]
+
+optionName(string) - a string that describes the options eg 'salsa'
+```
+
+
+
+
+
