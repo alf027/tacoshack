@@ -72,7 +72,8 @@ currentStep(int) - the current step the wizard is on.
 prev(function) - the callback function run when clicking the previous button.
 ```
 
-
+### Styling
+I chose to use bootstrap for styling this project as that is what I'm familar with in my current role. I'm not completetly sold on bootstrap but I wanted to quickly be able to style the project and focus more on the react/component design of the project. 
 
 
 
