@@ -53,7 +53,7 @@ class OrderWizard extends Component {
       }
     ];
 
-    return tacoOptions
+    return tacoOptions;
   }
 
   _next = (data, step) => {

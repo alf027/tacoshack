@@ -63,7 +63,7 @@ class TacoOption extends React.Component {
               {tacos}
             </div>
           </div>
-          <div class='buttonFooter'>
+          <div className='buttonFooter'>
             <button type="button" className="btn btn-primary btn-lg previous" onClick={this.validatePrev}>previous</button>
             <button type="button" className="btn btn-primary btn-lg" onClick={this.validateNext}>next</button>
           </div>
