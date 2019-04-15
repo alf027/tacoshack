@@ -3,13 +3,13 @@
 
 ### Install nodejs
 
-https://nodejs.org/en/download/ here is the link to the latest version
+https://nodejs.org/en/download/ here is the link to the latest version.
 
-Navigate to the project directory in a terminal/cmd window and run
+Navigate to the project directory in a terminal/cmd window and run the following commands:
 
 ### `npm install`
 
-Installs application packages
+Installs application packages.
 
 ### `npm start`
 
@@ -70,7 +70,7 @@ The OrderSummary component is responsible for displaying the completed taco orde
 It is configured by passing the following props:
 
 ```
-completedOrder(array) - this is an array of all the option values and prices selected in the steps leading up to the completed order 
+completedOrder(array) - this is an array of all the option values and prices selected in the steps leading up to the completed order.
 
 
 EG: [{ type: "Taco", price: 7.99 }, { type: 'Beef', price: 0.00}, { type: 'Habanero Devil Sauce', price: 0.00 }, { type: 'Drink', price: 1.25 }]
