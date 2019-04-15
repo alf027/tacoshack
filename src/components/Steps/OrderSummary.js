@@ -1,6 +1,6 @@
 import React from "react";
 
-class StepFive extends React.Component {
+class OrderSummary extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -108,4 +108,4 @@ class StepFive extends React.Component {
   }
 };
 
-export default StepFive;
+export default OrderSummary;

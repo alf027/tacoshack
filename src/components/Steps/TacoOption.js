@@ -2,7 +2,7 @@ import React from "react";
 import { isEmpty } from "lodash"
 import './TacoOption.css';
 
-class StepOne extends React.Component {
+class TacoOption extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -80,4 +80,4 @@ class StepOne extends React.Component {
   }
 }
 
-export default StepOne;
+export default TacoOption;
