@@ -64,8 +64,11 @@ class StepOne extends React.Component {
         <div className="mx-auto">
           <div className="ui form">
             <div>
-              <label htmlFor="tacoType">Select Taco Type</label>
-              <p>{this.state.errorMessage}</p>
+              <div className="text-center" >
+                <label htmlFor="tacoType">Select Taco Type</label>
+                <p className="text-danger">{this.state.errorMessage}</p>
+              </div>
+              
               {tacos}
             </div>
           </div>

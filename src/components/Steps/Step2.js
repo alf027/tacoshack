@@ -43,9 +43,9 @@ class StepTwo extends React.Component {
     return this.state.meatTypesDef.map((meat, index) => {
       return (
         <div key={index} className="field">
-          <div className="ui radio checkbox" >
-            <input type="radio" name="meatType" value={index} onClick={this.setMeatState}></input>
-            <label>{meat.meatType}</label>
+          <div className="form-check" >
+            <input className="form-check-input" type="radio" name="meatType" value={index} onClick={this.setMeatState}></input>
+            <label className="form-check-label">{meat.meatType}</label>
           </div>
         </div>
       )
@@ -63,8 +63,12 @@ class StepTwo extends React.Component {
         <div className="mx-auto">
           <div className="ui form">
             <div>
-              <label htmlFor="tacoType">Select Meat Type</label>
-              <p>{this.state.errorMessage}</p>
+              <div>
+                <div className="text-center" >
+                  <label htmlFor="salsaType">Select Meat Type</label>
+                  <p className="text-danger">{this.state.errorMessage}</p>
+                </div>
+              </div>
               {meat}
             </div>
           </div>

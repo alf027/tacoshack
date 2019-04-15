@@ -62,12 +62,18 @@ class OrderWizard extends Component {
   render() {
     return (
       <div>
-        <div className="text-center">Order Wizard</div>
-        <StepOne currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
-        <StepTwo currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
-        <StepThree currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
-        <StepFour currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
-        <StepFive completedOrder={this.state.tacoOrder} currentStep={this.state.currentStep} prev={this._prev} />
+        <div className="text-center">
+        <h2>Order Wizard</h2>
+        <hr />
+        </div>
+        <div>
+          <StepOne currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
+          <StepTwo currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
+          <StepThree currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
+          <StepFour currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
+          <StepFive completedOrder={this.state.tacoOrder} currentStep={this.state.currentStep} prev={this._prev} />
+        </div>
+        
       </div>
 
 

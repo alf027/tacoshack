@@ -8,8 +8,8 @@ class StepFour extends React.Component {
     this.state = {
       selectedDrink: {},
       drinkTypeDef: [
-        { drinkType: 'yes' },
-        { drinkType: 'no' }
+        { drinkType: 'Yes' },
+        { drinkType: 'No' }
       ],
       errorMessage: ""
     }
@@ -44,9 +44,9 @@ class StepFour extends React.Component {
     return this.state.drinkTypeDef.map((drink, index) => {
       return (
         <div key={index} className="field">
-          <div className="ui radio checkbox" >
-            <input type="radio" name="drinkType" value={index} onClick={this.setDrinkState}></input>
-            <label>{drink.drinkType}</label>
+          <div className="form-check" >
+            <input className="form-check-input" type="radio" name="drinkType" value={index} onClick={this.setDrinkState}></input>
+            <label className="form-check-label">{drink.drinkType}</label>
           </div>
         </div>
       )
@@ -64,8 +64,10 @@ class StepFour extends React.Component {
         <div className="mx-auto">
           <div className="ui form">
             <div>
-              <label htmlFor="tacoType">Select Drink Type</label>
-              <p>{this.state.errorMessage}</p>
+              <div className="text-center" >
+                  <label htmlFor="drinkType">Would You like a drink?</label>
+                  <p className="text-danger">{this.state.errorMessage}</p>
+              </div>
               {drink}
             </div>
           </div>

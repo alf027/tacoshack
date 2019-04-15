@@ -38,7 +38,7 @@ class StepFive extends React.Component {
   }
 
   calculateDrinkPrice() {
-    return this.props.completedOrder.drinkType === "yes" ? this.props.completedOrder.drinkPrice : 0.00;
+    return this.props.completedOrder.drinkType === "Yes" ? this.props.completedOrder.drinkPrice : 0.00;
   }
 
   calculateTax() {

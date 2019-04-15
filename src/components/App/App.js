@@ -7,7 +7,9 @@ class App extends Component {
     return (
       <div className="container">
         <div className="text-center">
-          <div className="col col-xm-12">Nicu's Taco Shack</div>
+          <div className="col col-xm-12">
+            <h1>Nicu's Taco Shack</h1>
+          </div>
         </div>
         <OrderWizard />
       </div>

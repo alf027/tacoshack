@@ -43,9 +43,9 @@ class StepThree extends React.Component {
     return this.state.salsaTypesDef.map((salsa, index) => {
       return (
         <div key={index} className="field">
-          <div className="ui radio checkbox" >
-            <input type="radio" name="salsaType" value={index} onClick={this.setSalsaState}></input>
-            <label>{salsa.salsaType}</label>
+          <div className="form-check" >
+            <input className="form-check-input" type="radio" name="tacoType" value={index} onClick={this.setSalsaState}></input>
+            <label className="form-check-label">{salsa.salsaType}</label>
           </div>
         </div>
       )
@@ -63,8 +63,10 @@ class StepThree extends React.Component {
         <div className="mx-auto">
           <div className="ui form">
             <div>
-              <label htmlFor="tacoType">Select Salsa Type</label>
-              <p>{this.state.errorMessage}</p>
+              <div className="text-center" >
+                  <label htmlFor="salsaType">Select Salsa Type</label>
+                  <p className="text-danger">{this.state.errorMessage}</p>
+              </div>
               {salsa}
             </div>
           </div>
