@@ -104,8 +104,7 @@ class StepFive extends React.Component {
 
 
   render() {
-    const orderSummary = this.buildOrderSummary()
-    return orderSummary
+    return this.buildOrderSummary()
   }
 };
 
