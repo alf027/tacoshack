@@ -5,22 +5,17 @@ class StepOne extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedTaco: {},
-      tacoTypesDef: [
-        { tacoType: "Taco", tacoPrice: 7.99 },
-        { tacoType: "Burrito", tacoPrice: 8.99 },
-        { tacoType: "Bowl", tacoPrice: 6.99 }
-      ],
+      selectedOption: {},
       errorMessage: ""
     }
   }
 
   validateNext = () => {
-    if (isEmpty(this.state.selectedTaco)) {
-      this.setState({ errorMessage: "Please Select a Taco Type" })
+    if (isEmpty(this.state.selectedOption)) {
+      this.setState({ errorMessage: `Please Select a ${this.props.optionName} Type` })
     } else {
-      this.props.next(this.state.selectedTaco)
-      this.setState({ errorMessage: "", selectedTaco: {} })
+      this.props.next(this.state.selectedOption, this.props.renderStep)
+      this.setState({ errorMessage: "", selectedOption: {} })
     }
 
   }
@@ -35,26 +30,26 @@ class StepOne extends React.Component {
     console.log(event.target.value)
     const index = event.target.value
     //utilizing the index as the value prop does not like objects
-    this.setState({ selectedTaco: this.state.tacoTypesDef[index] }, () => {
-      console.log(this.state.selectedTaco);
+    this.setState({ selectedOption: this.props.options[index] }, () => {
+      console.log(this.state.selectedOption);
     })
   }
 
   buildRadioOptions = () => {
-    return this.state.tacoTypesDef.map((taco, index) => {
+    return this.props.options.map((taco, index) => {
       return (
         <div key={index} className="field">
           <div className="form-check" >
             <input className="form-check-input" type="radio" name="tacoType" value={index} onClick={this.setTacoState}></input>
-            <label className="form-check-label">{taco.tacoType} {taco.tacoPrice}</label>
+            <label className="form-check-label">{taco.type} {taco.price.toFixed(2)}</label>
           </div>
         </div>
       )
     });
   }
 
-  render() {
-    if (this.props.currentStep !== 1) {
+  buildOptionStep() {
+    if (this.props.currentStep !== this.props.renderStep) {
       return null;
     }
     const tacos = this.buildRadioOptions()
@@ -65,7 +60,7 @@ class StepOne extends React.Component {
           <div className="ui form">
             <div>
               <div className="text-center" >
-                <label htmlFor="tacoType">Select Taco Type</label>
+                <label htmlFor="tacoType">{`Select ${this.props.optionName} Type`}</label>
                 <p className="text-danger">{this.state.errorMessage}</p>
               </div>
               
@@ -78,6 +73,10 @@ class StepOne extends React.Component {
         </div>
       </div>
     )
+  }
+
+  render() {
+    return this.buildOptionStep();
   }
 }
 

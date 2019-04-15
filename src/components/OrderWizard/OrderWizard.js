@@ -5,6 +5,7 @@ import StepTwo from '../Steps/Step2';
 import StepThree from '../Steps/Step3';
 import StepFour from '../Steps/Step4';
 import StepFive from '../Steps/Step5';
+import {isUndefined} from 'lodash';
 
 
 
@@ -13,29 +14,72 @@ class OrderWizard extends Component {
     super(props)
 
     this.state = {
-      currentStep: 1,
-      tacoOrder: {
-        tacoType: '',
-        tacoPrice: 0,
-        meatType: '',
-        salsaType: '',
-        drinkType: 'no',
-        drinkPrice: 1.25
-      }
+      currentStep: 0,
+      tacoOrder: []
     }
   }
 
-  _next = (data) => {
+  getOptionMetaData () {
+    const tacoOptions = [
+      {
+        optionName: "Taco",
+        renderStep: 0,
+        options: [
+          { type: "Taco", price: 7.99 },
+          { type: "Burrito", price: 8.99 },
+          { type: "Bowl", price: 6.99 }
+        ]
+      },
+      {
+        optionName: "Meat",
+        renderStep: 1,
+        options: [
+          { type: 'Chicken', price: 0.00},
+          { type: 'Beef', price: 0.00},
+          { type: 'No Meat', price: 0.00}
+        ]
+      },
+      {
+        optionName: "Salsa",
+        renderStep: 2,
+        options: [
+          { type: 'Pico de Gallo', price: 0.00 },
+          { type: 'Habanero Devil Sauce', price: 0.00 },
+          { type: 'Verde Salsa', price: 0.00 }
+        ]
+      },
+      {
+        optionName: "Drink",
+        renderStep: 3,
+        options: [
+          { type: 'Drink', price: 1.25 },
+          { type: 'No Drink', price: 0.00 }
+        ]
+      }
+    ];
+
+    return tacoOptions
+  }
+
+  _next = (data, step) => {
+    const optionMetaData = this.getOptionMetaData()
     let currentStep = this.state.currentStep
-    let mergedTacoOrder = Object.assign({},this.state.tacoOrder, data)
+    let optionValue = data
+    let currentTacoOrder = this.state.tacoOrder
+    if(isUndefined(currentTacoOrder[step])) {
+      currentTacoOrder.push(optionValue)
+    } else {
+      currentTacoOrder[step] = optionValue
+    }
+   
     this.setState(
       // this merges the data from the step with the parent state to create a complete order object
-      {tacoOrder : mergedTacoOrder}, () => {
-      console.log(this.state.tacoOrder)
-    })
+      { tacoOrder: currentTacoOrder }, () => {
+        console.log('taco order state',this.state.tacoOrder)
+      })
 
-    if (currentStep >= 4) {
-      currentStep = 5
+    if (currentStep >= optionMetaData.length - 1) {
+      currentStep = 4
     } else {
       currentStep += 1
     }
@@ -48,8 +92,8 @@ class OrderWizard extends Component {
 
   _prev = () => {
     let currentStep = this.state.currentStep;
-    if (currentStep <= 2) {
-      currentStep = 1
+    if (currentStep <= 1) {
+      currentStep = 0
     } else {
       currentStep -= 1
     }
@@ -59,25 +103,35 @@ class OrderWizard extends Component {
     })
   }
 
-  render() {
+  buildOptions() {
+    const options = this.getOptionMetaData()
+    console.log('options',options)
+    return options.map((optionObj, index)=>{
+      return <StepOne key={index} currentStep={this.state.currentStep} renderStep={optionObj.renderStep} options={optionObj.options} optionName={optionObj.optionName} prev={this._prev} next={this._next} />
+    })
+
+  }
+
+  buildOrderWizard() {
+    const tacoOptions = this.buildOptions();
+    console.log(tacoOptions)
     return (
       <div>
         <div className="text-center">
-        <h2>Order Wizard</h2>
-        <hr />
+          <h2>Order Wizard</h2>
+          <hr />
         </div>
         <div>
-          <StepOne currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
-          <StepTwo currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
-          <StepThree currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
-          <StepFour currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
+          {tacoOptions}
           <StepFive completedOrder={this.state.tacoOrder} currentStep={this.state.currentStep} prev={this._prev} />
         </div>
-        
       </div>
-
-
     )
+  }
+
+
+  render() {
+    return this.buildOrderWizard()
   }
 }
 
