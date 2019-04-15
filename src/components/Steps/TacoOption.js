@@ -1,5 +1,6 @@
 import React from "react";
 import { isEmpty } from "lodash"
+import './TacoOption.css';
 
 class StepOne extends React.Component {
   constructor(props) {
@@ -27,19 +28,16 @@ class StepOne extends React.Component {
 
 
   setTacoState = (event) => {
-    console.log(event.target.value)
     const index = event.target.value
     //utilizing the index as the value prop does not like objects
-    this.setState({ selectedOption: this.props.options[index] }, () => {
-      console.log(this.state.selectedOption);
-    })
+    this.setState({ selectedOption: this.props.options[index] })
   }
 
   buildRadioOptions = () => {
     return this.props.options.map((taco, index) => {
       return (
         <div key={index} className="field">
-          <div className="form-check" >
+          <div className="form-check taco-options" >
             <input className="form-check-input" type="radio" name="tacoType" value={index} onClick={this.setTacoState}></input>
             <label className="form-check-label">{taco.type} {taco.price.toFixed(2)}</label>
           </div>
@@ -53,10 +51,10 @@ class StepOne extends React.Component {
       return null;
     }
     const tacos = this.buildRadioOptions()
-
     return (
       <div className="row">
         <div className="mx-auto">
+          <hr></hr>
           <div className="ui form">
             <div>
               <div className="text-center" >
@@ -67,9 +65,11 @@ class StepOne extends React.Component {
               {tacos}
             </div>
           </div>
-          <button type="button" className="btn btn-primary btn-lg" onClick={this.validatePrev}>previous</button>
-          <span> </span>
-          <button type="button" className="btn btn-primary btn-lg" onClick={this.validateNext}>next</button>
+          <div class='buttonFooter'>
+            <button type="button" className="btn btn-primary btn-lg previous" onClick={this.validatePrev}>previous</button>
+            <button type="button" className="btn btn-primary btn-lg" onClick={this.validateNext}>next</button>
+          </div>
+          
         </div>
       </div>
     )

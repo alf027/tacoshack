@@ -62,8 +62,7 @@ class StepFive extends React.Component {
     });
   }
 
-
-  render() {
+  buildOrderSummary() {
     if (this.props.currentStep !== 4) {
       return null;
     }
@@ -71,9 +70,6 @@ class StepFive extends React.Component {
     const subtotal = this.calculateSubTotal().toFixed(2);
     const total = this.calculateTotal().toFixed(2)
     const orderItems = this.buildOrderItems()
-
-    console.log('total', total)
-
 
     return (
       <div className='row'>
@@ -104,6 +100,12 @@ class StepFive extends React.Component {
         </div>
       </div>
     )
+  }
+
+
+  render() {
+    const orderSummary = this.buildOrderSummary()
+    return orderSummary
   }
 };
 
