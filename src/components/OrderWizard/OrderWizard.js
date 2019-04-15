@@ -1,77 +1,121 @@
 import React, { Component } from 'react';
-// import ChoicesList from '../ChoicesList/ChoicesList';
-import StepOne from '../Steps/Step1';
-import StepTwo from '../Steps/Step2';
-import StepThree from '../Steps/Step3';
-import StepFour from '../Steps/Step4';
-import StepFive from '../Steps/Step5';
+import TacoOption from '../Steps/TacoOption';
+import OrderSummary from '../Steps/OrderSummary';
+import {isUndefined} from 'lodash';
 
 
 
 class OrderWizard extends Component {
   constructor(props) {
-    super(props)
-
+    super(props);
     this.state = {
-      currentStep: 1,
-      tacoOrder: {
-        tacoType: '',
-        tacoPrice: 0,
-        meatType: '',
-        salsaType: '',
-        drinkType: 'no',
-        drinkPrice: 1.25
-      }
-    }
+      currentStep: 0,
+      tacoOrder: []
+    };
   }
 
-  _next = (data) => {
-    let currentStep = this.state.currentStep
-    let mergedTacoOrder = Object.assign({},this.state.tacoOrder, data)
-    this.setState(
-      // this merges the data from the step with the parent state to create a complete order object
-      {tacoOrder : mergedTacoOrder}, () => {
-      console.log(this.state.tacoOrder)
-    })
+  getOptionMetaData () {
+    const tacoOptions = [
+      {
+        optionName: "Taco",
+        renderStep: 0,
+        options: [
+          { type: "Taco", price: 7.99 },
+          { type: "Burrito", price: 8.99 },
+          { type: "Bowl", price: 6.99 }
+        ]
+      },
+      {
+        optionName: "Meat",
+        renderStep: 1,
+        options: [
+          { type: 'Chicken', price: 0.00},
+          { type: 'Beef', price: 0.00},
+          { type: 'No Meat', price: 0.00}
+        ]
+      },
+      {
+        optionName: "Salsa",
+        renderStep: 2,
+        options: [
+          { type: 'Pico de Gallo', price: 0.00 },
+          { type: 'Habanero Devil Sauce', price: 0.00 },
+          { type: 'Verde Salsa', price: 0.00 }
+        ]
+      },
+      {
+        optionName: "Drink",
+        renderStep: 3,
+        options: [
+          { type: 'Drink', price: 1.25 },
+          { type: 'No Drink', price: 0.00 }
+        ]
+      }
+    ];
 
-    if (currentStep >= 4) {
-      currentStep = 5
+    return tacoOptions;
+  }
+
+  _next = (data, step) => {
+    const optionMetaData = this.getOptionMetaData();
+    let currentStep = this.state.currentStep;
+    let optionValue = data;
+    let currentTacoOrder = this.state.tacoOrder;
+    if(isUndefined(currentTacoOrder[step])) {
+      currentTacoOrder.push(optionValue);
     } else {
-      currentStep += 1
+      currentTacoOrder[step] = optionValue;
     }
+   
+    this.setState(
+      { tacoOrder: currentTacoOrder }
+    );
 
-    this.setState({ currentStep: currentStep }, () => {
-      console.log('current step', this.state.currentStep)
-    })
+    if (currentStep >= optionMetaData.length - 1) {
+      currentStep = 4;
+    } else {
+      currentStep += 1;
+    };
+
+    this.setState({ currentStep: currentStep });
 
   }
 
   _prev = () => {
     let currentStep = this.state.currentStep;
-    if (currentStep <= 2) {
-      currentStep = 1
+    if (currentStep <= 1) {
+      currentStep = 0;
     } else {
-      currentStep -= 1
+      currentStep -= 1;
     }
 
-    this.setState({ currentStep: currentStep }, () => {
-      console.log('current step', this.state.currentStep)
-    })
+    this.setState({ currentStep: currentStep });
+  }
+
+  buildOptions() {
+    const options = this.getOptionMetaData();
+    return options.map((optionObj, index)=>{
+      return <TacoOption key={index} currentStep={this.state.currentStep} renderStep={optionObj.renderStep} options={optionObj.options} optionName={optionObj.optionName} prev={this._prev} next={this._next} />
+    });
+  }
+
+  buildOrderWizard() {
+    const tacoOptions = this.buildOptions();
+    return (
+      <div>
+        <div className="text-center">
+          <h2>Order Wizard</h2>
+        </div>
+        <div>
+          {tacoOptions}
+          <OrderSummary completedOrder={this.state.tacoOrder} currentStep={this.state.currentStep} prev={this._prev} />
+        </div>
+      </div>
+    );
   }
 
   render() {
-    return (
-      <div>
-        <div>Order Wizard</div>
-        <StepOne currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
-        <StepTwo currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
-        <StepThree currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
-        <StepFour currentStep={this.state.currentStep} prev={this._prev} next={this._next} />
-        <StepFive completedOrder={this.state.tacoOrder} currentStep={this.state.currentStep} prev={this._prev} />
-      </div>
-
-
-    )
+    return this.buildOrderWizard();
   }
 }
 
