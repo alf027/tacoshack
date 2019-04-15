@@ -56,6 +56,9 @@ eg :
 optionName(string) - a string that describes the options eg 'salsa'
 ```
 
+#### Error Messaging
+I included some error messaging if the user does not select an option value. This error message utilizes the ```optionName``` prop to form an message to inform the user they need to select an option before continuing.
+
 ### OrderSummary
 
 The OrderSummary component is responsible for displaying the completed taco order in line item format and iterates through the completed taco order to calculate the subtotal, tax, and total.  
@@ -76,4 +79,8 @@ prev(function) - the callback function run when clicking the previous button.
 I chose to use bootstrap for styling this project as that is what I'm familar with in my current role. I'm not completetly sold on bootstrap but I wanted to quickly be able to style the project and focus more on the react/component design of the project. 
 
 
+### Final Thoughts
+I had a blast doing this assignment and learned a ton.  React is super cool! If you have any questions feel free to reach out to me at alf027@gmail.com
+
+Thanks for taking the time to look over my code! 
 
