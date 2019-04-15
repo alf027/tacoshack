@@ -29,16 +29,13 @@ class StepFive extends React.Component {
   }
 
   calculateSubTotal() {
-    const foodPrice = this.props.completedOrder.tacoPrice;
-    const drinkPrice = this.calculateDrinkPrice();
-    let subtotal = foodPrice + drinkPrice;
+    let subtotal = 0
+    this.props.completedOrder.forEach((orderItem) => {
+      subtotal += orderItem.price
+    })
 
     return subtotal
 
-  }
-
-  calculateDrinkPrice() {
-    return this.props.completedOrder.drinkType === "Yes" ? this.props.completedOrder.drinkPrice : 0.00;
   }
 
   calculateTax() {
@@ -52,51 +49,51 @@ class StepFive extends React.Component {
 
   }
 
+  buildOrderItems() {
+    return this.props.completedOrder.map((orderItem, index) => {
+      return (
+        <li key={index} className="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 className="my-0">{orderItem.type}</h6>
+          </div>
+          <span className="text-muted">${orderItem.price.toFixed(2)}</span>
+        </li>
+      )
+    });
+  }
+
 
   render() {
-    if (this.props.currentStep !== 5) {
+    if (this.props.currentStep !== 4) {
       return null;
     }
-    const completedOrder = this.props.completedOrder;
     const tax = this.calculateTax().toFixed(2);
     const subtotal = this.calculateSubTotal().toFixed(2);
     const total = this.calculateTotal().toFixed(2)
-    const drinkPrice = this.calculateDrinkPrice().toFixed(2);
+    const orderItems = this.buildOrderItems()
+
+    console.log('total', total)
 
 
     return (
       <div className='row'>
         <div className="col-md-4 order-md-2 mb-4 mx-auto">
-          <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <ul className="list-group mb-3">
+            {orderItems}
+            <li className="list-group-item d-flex justify-content-between lh-condensed">
               <div>
-                <h6 class="my-0">{completedOrder.tacoType}</h6>
-                <small class="text-muted">{completedOrder.meatType}</small>
-                <br />
-                <small class="text-muted">{completedOrder.salsaType}</small>
+                <h6 className="my-0">Tax </h6>
+                <small className="text-muted">(8.445%)</small>
               </div>
-              <span class="text-muted">$12</span>
+              <span className="text-muted">${tax}</span>
             </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <li className="list-group-item d-flex justify-content-between lh-condensed">
               <div>
-                <h6 class="my-0">Drink</h6>
+                <h6 className="my-0">Subtotal</h6>
               </div>
-              <span class="text-muted">${drinkPrice}</span>
+              <span className="text-muted">${subtotal}</span>
             </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Tax </h6>
-                <small class="text-muted">(8.445%)</small>
-              </div>
-              <span class="text-muted">${tax}</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Subtotal</h6>
-              </div>
-              <span class="text-muted">${subtotal}</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between text-success">
+            <li className="list-group-item d-flex justify-content-between text-success">
               <span>Total (USD)</span>
               <strong>${total}</strong>
             </li>
