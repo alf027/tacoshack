@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 // import ChoicesList from '../ChoicesList/ChoicesList';
-import StepOne from '../Steps/Step1';
-import StepTwo from '../Steps/Step2';
-import StepThree from '../Steps/Step3';
-import StepFour from '../Steps/Step4';
-import StepFive from '../Steps/Step5';
+import TacoOption from '../Steps/TacoOption';
+import OrderSummary from '../Steps/OrderSummary';
 import {isUndefined} from 'lodash';
 
 
@@ -73,10 +70,8 @@ class OrderWizard extends Component {
     }
    
     this.setState(
-      // this merges the data from the step with the parent state to create a complete order object
-      { tacoOrder: currentTacoOrder }, () => {
-        console.log('taco order state',this.state.tacoOrder)
-      })
+      { tacoOrder: currentTacoOrder }
+    )
 
     if (currentStep >= optionMetaData.length - 1) {
       currentStep = 4
@@ -84,9 +79,7 @@ class OrderWizard extends Component {
       currentStep += 1
     }
 
-    this.setState({ currentStep: currentStep }, () => {
-      console.log('current step', this.state.currentStep)
-    })
+    this.setState({ currentStep: currentStep })
 
   }
 
@@ -98,32 +91,27 @@ class OrderWizard extends Component {
       currentStep -= 1
     }
 
-    this.setState({ currentStep: currentStep }, () => {
-      console.log('current step', this.state.currentStep)
-    })
+    this.setState({ currentStep: currentStep })
   }
 
   buildOptions() {
     const options = this.getOptionMetaData()
-    console.log('options',options)
     return options.map((optionObj, index)=>{
-      return <StepOne key={index} currentStep={this.state.currentStep} renderStep={optionObj.renderStep} options={optionObj.options} optionName={optionObj.optionName} prev={this._prev} next={this._next} />
+      return <TacoOption key={index} currentStep={this.state.currentStep} renderStep={optionObj.renderStep} options={optionObj.options} optionName={optionObj.optionName} prev={this._prev} next={this._next} />
     })
 
   }
 
   buildOrderWizard() {
     const tacoOptions = this.buildOptions();
-    console.log(tacoOptions)
     return (
       <div>
         <div className="text-center">
           <h2>Order Wizard</h2>
-          <hr />
         </div>
         <div>
           {tacoOptions}
-          <StepFive completedOrder={this.state.tacoOrder} currentStep={this.state.currentStep} prev={this._prev} />
+          <OrderSummary completedOrder={this.state.tacoOrder} currentStep={this.state.currentStep} prev={this._prev} />
         </div>
       </div>
     )
