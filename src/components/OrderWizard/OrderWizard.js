@@ -11,7 +11,7 @@ class OrderWizard extends Component {
     this.state = {
       currentStep: 0,
       tacoOrder: []
-    }
+    };
   }
 
   getOptionMetaData () {
@@ -113,7 +113,6 @@ class OrderWizard extends Component {
       </div>
     );
   }
-
 
   render() {
     return this.buildOrderWizard();
