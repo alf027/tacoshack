@@ -10,8 +10,7 @@ class OrderSummary extends React.Component {
       taxRate: .08445
     };
   }
-
-  componentDidMount() {
+  componentWillReceiveProps () {
     this.calculatePricing();
   }
 
@@ -19,8 +18,6 @@ class OrderSummary extends React.Component {
     this.setState({ subtotal: this.calculateSubTotal() });
     this.setState({ tax: this.calculateTax() });
     this.setState({ total: this.calculateTotal() });
-
-
   }
 
   validatePrev = () => {
@@ -37,7 +34,7 @@ class OrderSummary extends React.Component {
   }
 
   calculateTax() {
-    let tax = this.calculateSubTotal() * .08445;
+    let tax = this.calculateSubTotal() * this.state.taxRate;
     return tax;
   }
 
@@ -64,9 +61,7 @@ class OrderSummary extends React.Component {
     if (this.props.currentStep !== 4) {
       return null;
     }
-    const tax = this.calculateTax().toFixed(2);
-    const subtotal = this.calculateSubTotal().toFixed(2);
-    const total = this.calculateTotal().toFixed(2);
+
     const orderItems = this.buildOrderItems();
 
     return (
@@ -77,19 +72,19 @@ class OrderSummary extends React.Component {
             <li className="list-group-item d-flex justify-content-between lh-condensed">
               <div>
                 <h6 className="my-0">Tax </h6>
-                <small className="text-muted">(8.445%)</small>
+                <small className="text-muted">{this.state.taxRate * 100}%</small>
               </div>
-              <span className="text-muted">${tax}</span>
+              <span className="text-muted">${this.state.tax.toFixed(2)}</span>
             </li>
             <li className="list-group-item d-flex justify-content-between lh-condensed">
               <div>
                 <h6 className="my-0">Subtotal</h6>
               </div>
-              <span className="text-muted">${subtotal}</span>
+              <span className="text-muted">${this.state.subtotal.toFixed(2)}</span>
             </li>
             <li className="list-group-item d-flex justify-content-between text-success">
               <span>Total (USD)</span>
-              <strong>${total}</strong>
+              <strong>${this.state.total.toFixed(2)}</strong>
             </li>
           </ul>
           <div className="row">

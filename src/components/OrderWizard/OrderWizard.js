@@ -67,9 +67,7 @@ class OrderWizard extends Component {
       currentTacoOrder[step] = optionValue;
     }
    
-    this.setState(
-      { tacoOrder: currentTacoOrder }
-    );
+    this.setState({ tacoOrder: currentTacoOrder });
 
     if (currentStep >= optionMetaData.length - 1) {
       currentStep = 4;
